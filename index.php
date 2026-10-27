@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khan Enterprise</title>
+    <meta name="description" content="খান এন্টারপ্রাইজ — ঢাকা থেকে তারাকান্দি সরাসরি বাস সার্ভিস। অনলাইনে টিকেট বুক করুন, bKash/Nagad/Rocket দিয়ে পেমেন্ট করুন।">
+    <meta name="keywords" content="khan Enterprise, dhaka to tarakandi, tarakandi bus, খান এন্টারপ্রাইজ, তারাকান্দি বাস, online bus ticket bangladesh">
+    <meta property="og:title" content="Khan Enterprise - ঢাকা থেকে তারাকান্দি">
+    <meta property="og:description" content="সরাসরি বাস সার্ভিস — নিরাপদে, সময়মতো, আরামে। অনলাইন টিকেট বুকিং।">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://khanEnterprise.com">
+    <link rel="canonical" href="https://khanEnterprise.com">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+
+
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        khan: {
+                            blue: '#1e3a5f',
+                            darkblue: '#142a45',
+                            lightblue: '#e8f0fe',
+                            gold: '#d4a017',
+                            darkgold: '#b8860b',
+                            red: '#d32f2f',
+                            green: '#2e7d32',
+                            dark: '#0f172a',
+                            gray: '#f5f5f5',
+                        },
+                        bkash: '#E2136E',
+                        nagad: '#F6921E',
+                        rocket: '#8C3494',
+                        card: '#1A1F71',
+                    },
+                    fontFamily: {
+                        bangla: ['Hind Siliguri', 'sans-serif'],
+                        english: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    
+</script>
+
+
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/header.css">
+<link rel="stylesheet" href="assets/css/hero.css">
+<link rel="stylesheet" href="assets/css/booking.css">
+<link rel="stylesheet" href="assets/css/footer.css">
+<link rel="stylesheet" href="assets/css/responsive.css">
+<link rel="stylesheet" href="assets/css/animations.css">
+
+
+</head>
+<body class="bg-white text-gray-800">
+
+    <!-- Top Bar -->
+<div id="top-bar"></div>
+
+    <!-- Header -->
+ 
+    <div id="header"></div>
+
+    <!-- Mobile Menu -->
+  <div id="mobile-menu"></div>
+
+    <!-- Hero Slider -->
+   <div id="hero"></div>
+
+    <!-- Marquee -->
+    <div id="notice-bar"></div>
+
+    <!-- Search / Booking -->
+     <div id="ticket-search"></div>
+
+    <!-- Features -->
+    <div id="features"></div>
+
+    <!-- Schedule -->
+    <div id="popular-routes"></div>
+
+    <!-- Fare Info -->
+   <div id="fare"></div>
+
+    <!-- About -->
+    <div id="why-choose-us"></div>
+
+    <!-- Counter Locations -->
+    <div id="counters"></div>
+
+    <!-- Contact -->
+    <div id="contact"></div>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+
+    <!-- Scroll to Top -->
+   <button id="scrollTop" class="fixed bottom-6 right-6 w-11 h-11 bg-khan-blue text-white rounded-full shadow-lg flex items-center justify-center opacity-0 pointer-events-none transition-all hover:bg-khan-darkblue z-50">
+        <iconify-icon icon="lucide:chevron-up" width="20"></iconify-icon>
+    </button>
+
+
+
+    <!-- ==================== BOOKING MODAL ==================== -->
+    <div id="bookingModal" class="modal-overlay">
+        <div class="modal-box">
+            <!-- Modal Header -->
+            <div class="bg-khan-blue text-white px-6 py-4 rounded-t-2xl flex items-center justify-between">
+                <h3 class="font-bold text-sm">টিকেট বুকিং — ঢাকা → তারাকান্দি</h3>
+                <button onclick="closeModal()" class="hover:bg-white/20 p-1 rounded transition-colors"><iconify-icon icon="lucide:x" width="18"></iconify-icon></button>
+            </div>
+
+            <!-- Step Indicators -->
+            <div class="px-6 pt-5 pb-2">
+                <div class="step-indicator">
+                    <div class="step-dot active" id="stepDot1">১</div>
+                    <div class="step-line" id="stepLine1"></div>
+                    <div class="step-dot" id="stepDot2">২</div>
+                    <div class="step-line" id="stepLine2"></div>
+                    <div class="step-dot" id="stepDot3">৩</div>
+                    <div class="step-line" id="stepLine3"></div>
+                    <div class="step-dot" id="stepDot4">৪</div>
+                </div>
+                <div class="flex justify-between mt-2 text-[10px] text-gray-400">
+                    <span>আসন নির্বাচন</span>
+                    <span>যাত্রী তথ্য</span>
+                    <span>পেমেন্ট</span>
+                    <span>কনফার্মেশন</span>
+                </div>
+            </div>
+
+            <!-- Step 1: Seat Selection -->
+            <div id="step1" class="px-6 py-4">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <p class="text-xs text-gray-500">তারিখ: <span id="modalDate" class="font-semibold text-gray-800"></span></p>
+                        <p class="text-xs text-gray-500">কোচ: <span id="modalCoach" class="font-semibold text-gray-800"></span></p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-xs text-gray-500">নির্বাচিত: <span id="seatCount" class="font-bold text-khan-blue">০</span> টি</p>
+                        <p class="text-xs text-gray-500">মোট: <span id="seatTotal" class="font-bold text-khan-blue">৳০</span></p>
+                    </div>
+                </div>
+                <div class="flex gap-4 mb-4 text-xs">
+                    <span class="flex items-center gap-1.5"><span class="w-5 h-5 border-2 border-gray-300 rounded"></span> খালি</span>
+                    <span class="flex items-center gap-1.5"><span class="w-5 h-5 bg-khan-blue rounded"></span> নির্বাচিত</span>
+                    <span class="flex items-center gap-1.5"><span class="w-5 h-5 bg-red-500 rounded opacity-60"></span> বুকড</span>
+                </div>
+                <div id="seatMap" class="flex flex-col items-center gap-1.5 mb-4"></div>
+                <button id="toStep2" onclick="goToStep(2)" disabled class="w-full bg-khan-blue text-white py-3 rounded-lg font-semibold text-sm disabled:opacity-40 disabled:cursor-not-allowed btn-primary">
+                    যাত্রী তথ্য দিন →
+                </button>
+            </div>
+
+            <!-- Step 2: Passenger Info -->
+            <div id="step2" class="px-6 py-4 hidden">
+                <div id="passengerForms"></div>
+                <div class="flex gap-3 mt-4">
+                    <button onclick="goToStep(1)" class="flex-1 border border-gray-300 text-gray-700 py-3 rounded-lg font-semibold text-sm hover:bg-gray-50 transition-colors">← পিছনে</button>
+                    <button onclick="goToStep(3)" class="flex-1 bg-khan-blue text-white py-3 rounded-lg font-semibold text-sm btn-primary">পেমেন্ট →</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Payment -->
+            <div id="step3" class="px-6 py-4 hidden">
+                <div class="bg-khan-lightblue rounded-xl p-4 mb-4">
+                    <div class="flex justify-between text-sm mb-1"><span class="text-gray-600">আসন ভাড়া (<span id="paySeats">০</span> × ৳<span id="payPerSeat">০</span>)</span><span class="font-semibold" id="paySubtotal">৳০</span></div>
+                    <div class="flex justify-between text-sm mb-1"><span class="text-gray-600">সার্ভিস চার্জ</span><span class="font-semibold" id="payService">৳০</span></div>
+                    <hr class="my-2 border-gray-200">
+                    <div class="flex justify-between text-base"><span class="font-bold text-gray-800">মোট</span><span class="font-bold text-khan-blue" id="payTotal">৳০</span></div>
+                </div>
+
+                <p class="text-sm font-semibold text-gray-700 mb-3">পেমেন্ট পদ্ধতি নির্বাচন করুন:</p>
+                <div class="space-y-3 mb-4" id="paymentMethods">
+                    <div class="payment-option flex items-center gap-4" data-method="bkash" onclick="selectPayment('bkash')">
+                        <div class="w-12 h-12 bg-bkash rounded-xl flex items-center justify-center flex-shrink-0"><span class="text-white font-bold text-lg font-english">b</span></div>
+                        <div class="flex-1"><p class="font-semibold text-sm text-gray-800">bKash</p><p class="text-xs text-gray-500">মোবাইল ব্যাংকিং</p></div>
+                        <div class="w-5 h-5 border-2 border-gray-300 rounded-full payment-check flex items-center justify-center"><div class="w-2.5 h-2.5 rounded-full bg-khan-blue hidden"></div></div>
+                    </div>
+                    <div class="payment-option flex items-center gap-4" data-method="nagad" onclick="selectPayment('nagad')">
+                        <div class="w-12 h-12 bg-nagad rounded-xl flex items-center justify-center flex-shrink-0"><iconify-icon icon="lucide:wallet" class="text-white" width="22"></iconify-icon></div>
+                        <div class="flex-1"><p class="font-semibold text-sm text-gray-800">Nagad</p><p class="text-xs text-gray-500">মোবাইল ব্যাংকিং</p></div>
+                        <div class="w-5 h-5 border-2 border-gray-300 rounded-full payment-check flex items-center justify-center"><div class="w-2.5 h-2.5 rounded-full bg-khan-blue hidden"></div></div>
+                    </div>
+                    <div class="payment-option flex items-center gap-4" data-method="rocket" onclick="selectPayment('rocket')">
+                        <div class="w-12 h-12 bg-rocket rounded-xl flex items-center justify-center flex-shrink-0"><iconify-icon icon="lucide:send" class="text-white" width="22"></iconify-icon></div>
+                        <div class="flex-1"><p class="font-semibold text-sm text-gray-800">Rocket</p><p class="text-xs text-gray-500">মোবাইল ব্যাংকিং</p></div>
+                        <div class="w-5 h-5 border-2 border-gray-300 rounded-full payment-check flex items-center justify-center"><div class="w-2.5 h-2.5 rounded-full bg-khan-blue hidden"></div></div>
+                    </div>
+                </div>
+
+                <!-- Payment Details (shown after method selected) -->
+                <div id="paymentDetails" class="hidden bg-gray-50 rounded-xl p-4 mb-4 border border-gray-200">
+                    <p class="text-sm font-semibold text-gray-700 mb-3" id="paymentTitle">bKash পেমেন্ট</p>
+                    <div id="paymentInstructions" class="text-xs text-gray-600 space-y-2 mb-3"></div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1.5">ট্রানজাকশন আইডি / রেফারেন্স নম্বর</label>
+                        <input type="text" id="trxId" placeholder="যেমন: TXN123ABC" class="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-khan-blue/30 focus:border-khan-blue bg-white font-english" required>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 mb-1.5">প্রেরকের নম্বর</label>
+                        <input type="tel" id="senderNumber" placeholder="০১XXXXXXXXX" class="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-khan-blue/30 focus:border-khan-blue bg-white font-english" required>
+                    </div>
+                </div>
+
+                <div class="flex gap-3">
+                    <button onclick="goToStep(2)" class="flex-1 border border-gray-300 text-gray-700 py-3 rounded-lg font-semibold text-sm hover:bg-gray-50 transition-colors">← পিছনে</button>
+                    <button id="payBtn" onclick="processPayment()" disabled class="flex-1 bg-khan-green text-white py-3 rounded-lg font-semibold text-sm disabled:opacity-40 disabled:cursor-not-allowed btn-primary">পেমেন্ট করুন</button>
+                </div>
+            </div>
+
+            <!-- Step 4: Confirmation -->
+            <div id="step4" class="px-6 py-4 hidden">
+                <div id="printInvoice">
+                    <div class="text-center mb-4">
+                        <div class="w-14 h-14 bg-khan-blue rounded-full flex items-center justify-center mx-auto mb-2 border-2 border-khan-gold">
+                            <iconify-icon icon="lucide:check" class="text-white" width="28"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-bold text-khan-green">টিকেট বুকিং সফল!</h3>
+                        <p class="text-xs text-gray-500">আপনার বুকিং আইডি: <span id="bookingId" class="font-bold text-khan-blue font-english"></span></p>
+                    </div>
+                    <div class="bg-gray-50 rounded-xl p-4 border border-gray-200 text-xs space-y-2">
+                        <div class="flex justify-between"><span class="text-gray-500">রুট:</span><span class="font-semibold">ঢাকা → তারাকান্দি</span></div>
+                        <div class="flex justify-between"><span class="text-gray-500">তারিখ:</span><span class="font-semibold" id="invDate"></span></div>
+                        <div class="flex justify-between"><span class="text-gray-500">কোচ:</span><span class="font-semibold" id="invCoach"></span></div>
+                        <div class="flex justify-between"><span class="text-gray-500">আসন নং:</span><span class="font-semibold text-khan-blue" id="invSeats"></span></div>
+                        <hr class="border-gray-200">
+                        <div id="invPassengers"></div>
+                        <hr class="border-gray-200">
+                        <div class="flex justify-between"><span class="text-gray-500">পেমেন্ট:</span><span class="font-semibold" id="invMethod"></span></div>
+                        <div class="flex justify-between"><span class="text-gray-500">ট্রানজাকশন:</span><span class="font-semibold font-english" id="invTrx"></span></div>
+                        <div class="flex justify-between text-sm"><span class="font-bold text-gray-800">মোট ভাড়া:</span><span class="font-bold text-khan-blue" id="invTotal"></span></div>
+                    </div>
+                    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mt-3 text-xs text-gray-600">
+                        <p class="font-semibold text-yellow-700 mb-1">⚠️ গুরুত্বপূর্ণ:</p>
+                        <p>এই বুকিং প্রাথমিক কনফার্মেশন। পেমেন্ট ভেরিফিকেশনের পর এসএমএস-এ চূড়ান্ত কনফার্মেশন পাঠানো হবে।</p>
+                    </div>
+                </div>
+                <div class="flex gap-3 mt-4 no-print">
+                    <button onclick="window.print()" class="flex-1 border border-khan-blue text-khan-blue py-3 rounded-lg font-semibold text-sm hover:bg-khan-lightblue transition-colors flex items-center justify-center gap-2">
+                        <iconify-icon icon="lucide:printer" width="16"></iconify-icon> প্রিন্ট
+                    </button>
+                    <button onclick="closeModal()" class="flex-1 bg-khan-blue text-white py-3 rounded-lg font-semibold text-sm btn-primary">সম্পন্ন</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast"></div>
+
+<script src="assets/js/config.js"></script>
+
+<script src="assets/js/utils.js"></script>
+
+<script src="assets/js/state.js"></script>
+
+<script src="assets/js/navigation.js"></script>
+<script src="assets/js/hero.js"></script>
+<script src="assets/js/booking.js"></script>
+<script src="assets/js/modal.js"></script>
+<script src="assets/js/payment.js"></script>
+<script src="assets/js/contact.js"></script>
+
+
+<script src="assets/js/app.js"></script>
+
+<script src="assets/js/loader.js"></script>
+
+
+</body>
+    <!--
+    ============================================================
+    🚀 DEPLOYMENT GUIDE — ডোমেইন ও হোস্টিং গাইড
+    ============================================================
+
+    ১. ফাইলটি index.html নামে সেভ করুন।
+
+    ২. হোস্টিং প্ল্যাটফর্ম (যেকোনো একটি বেছে নিন):
+
+       ⭐ ফ্রি অপশন:
+       • Netlify: https://netlify.com — শুধু ফাইল ড্র্যাগ & ড্রপ করুন
+       • Vercel: https://vercel.com — GitHub দিয়ে কানেক্ট করুন
+       • GitHub Pages: https://pages.github.com — ফ্রি, GitHub রিপো তৈরি করুন
+       • Cloudflare Pages: https://pages.cloudflare.com — ফ্রি ও দ্রুত
+
+       💰 পেইড অপশন (ভালো পারফরম্যান্স):
+       • Hostinger: https://hostinger.com.bd — বাংলাদেশ থেকে পেমেন্ট সুবিধা
+       • Namecheap: https://namecheap.com — ডোমেইন + হোস্টিং একসাথে
+       • SiteGround: https://siteground.com — প্রিমিয়াম হোস্টিং
+
+    ৩. ডোমেইন কিনুন:
+       • .com ডোমেইন: Namecheap, Hostinger, Google Domains
+       • .com.bd ডোমেইন: https://domain.com.bd (বাংলাদেশি)
+       • ডোমেইন নাম: khanEnterprise.com বা পছন্দমতো
+
+    ৪. DNS সেটআপ:
+       • হোস্টিং থেকে প্রাপ্ত nameserver ডোমেইনে সেট করুন
+       • DNS প্রপাগেট হতে ১-২৪ ঘণ্টা লাগতে পারে
+
+    ৫. SSL/HTTPS:
+       • Netlify/Vercel/Cloudflare — অটোমেটিক ফ্রি SSL
+       • অন্য হোস্টিং — Let's Encrypt ব্যবহার করুন (ফ্রি)
+
+    ৬. এই ফাইলে পরিবর্তন করুন:
+       • CONFIG.fares — ভাড়া সেট করুন
+       • CONFIG.bookedSeats — বুকড আসন আপডেট করুন
+       • CONFIG.paymentAccounts — bKash/Nagad/Rocket নম্বর দিন
+       • ফোন নম্বর, ইমেইল, ঠিকানা পরিবর্তন করুন
+       • ৳XXX লেখা জায়গায় আসল ভাড়া লিখুন
+
+    ৭. রিয়েল পেমেন্ট ইন্টিগ্রেশন (ভবিষ্যতে):
+       • bKash Merchant API: https://developer.bkash.com
+       • Nagad Merchant API: https://developer.nagad.com.bd
+       • SSLCommerz: https://sslcommerz.com (সব পেমেন্ট গেটওয়ে)
+       • Aamarpay: https://aamarpay.com
+
+    ============================================================
+    -->
+</body>
+</html>
